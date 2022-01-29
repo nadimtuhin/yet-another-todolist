@@ -29,7 +29,7 @@ function TodoItem({ id, title, done }) {
 
   return (
     <div
-      className={classnames('task-item', { done })}
+      className={classnames('task-item relative', { done })}
     >
       <label htmlFor={`task-item-${id}`} className="inline-flex items-center p-2">
         <input
@@ -45,17 +45,18 @@ function TodoItem({ id, title, done }) {
         {title}
       </p>
 
-      <div>
+      <div className="task-item-actions absolute right-0 top-0 bg-orange">
         <button
           type="button"
-          className="remove-task-button"
+          className="remove-task-button p-2"
           onClick={deleteTaskHandler}
         >
           Delete
         </button>
+        |
         <button
           type="button"
-          className="edit-task-button"
+          className="edit-task-button p-2"
           onClick={editTaskHandler}
         >
           Edit

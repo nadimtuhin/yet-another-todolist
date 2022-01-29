@@ -28,3 +28,10 @@
 .task-item {
   @apply p-2 border-2 rounded flex mb-4 items-center;
 }
+
+.task-item .task-item-actions {
+  display: none;
+}
+.task-item:hover .task-item-actions {
+  display: block;
+}
