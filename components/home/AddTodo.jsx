@@ -27,19 +27,19 @@ function AddTodo() {
   };
 
   return (
-    <div className="add-todo">
+    <>
       <input
         type="text"
-        className="task-input"
+        className="add-todo-input"
         placeholder="Add task"
         value={value}
         onChange={(event) => setValue(event.target.value)}
       />
 
-      <button type="button" className="task-button" onClick={onSubmit}>
+      <button type="button" className="add-todo-button" onClick={onSubmit}>
         Save
       </button>
-    </div>
+    </>
   );
 }
 
