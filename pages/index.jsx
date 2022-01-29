@@ -8,7 +8,6 @@ export default function Home() {
     <>
       <Head>
         <title>Yet another Todo List app</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className="app-container">
         <div className="app-wrapper">
