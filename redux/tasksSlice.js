@@ -14,7 +14,7 @@ export const tasksSlice = createSlice({
         title: action.payload.task,
         done: false,
       };
-      state.push(newTask);
+      state.unshift(newTask);
     },
     toggleMarkAsDone: (state, action) => {
       const index = state.findIndex((task) => task.id === action.payload.id);
