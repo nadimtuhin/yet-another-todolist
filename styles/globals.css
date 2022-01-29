@@ -18,10 +18,13 @@
   @apply p-2 border-2 rounded;
 }
 
+.tasks-list {
+}
+
 .task-item.done {
   @apply text-green border-green line-through;
 }
 
 .task-item {
-  @apply p-2 border-2 rounded;
+  @apply p-2 border-2 rounded flex mb-4 items-center;
 }

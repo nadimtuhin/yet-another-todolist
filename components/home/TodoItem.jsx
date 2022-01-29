@@ -8,53 +8,49 @@ import { deleteTask, editTask, toggleMarkAsDone } from '../../redux/tasksSlice';
 function TodoItem({ id, title, done }) {
   const dispatch = useDispatch();
 
-  const deleteTaskHandler = () => {
-    dispatch(
-      deleteTask({
-        id,
-      }),
-    );
+  const deleteTaskHandler = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    dispatch(deleteTask({ id }));
   };
 
-  const editTaskHandler = () => {
+  const editTaskHandler = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
     dispatch(
       editTask({
         id,
-        title: 'test',
+        title: `testing edit ${new Date()}`,
       }),
     );
-    // eslint-disable-next-line no-alert
-    alert('editing task');
   };
 
   const toggleMarkAsDoneHandler = () => {
-    // console.log(id);
     dispatch(toggleMarkAsDone({ id }));
   };
 
   return (
-    <div className={classnames('task-item flex mb-4 items-center', { done })}>
-      <p
-        className="w-full"
-        onClick={toggleMarkAsDoneHandler}
-        onKeyUp={toggleMarkAsDoneHandler}
-        role="presentation"
-      >
+    <div
+      className={classnames('task-item', { done })}
+      onClick={toggleMarkAsDoneHandler}
+      onKeyUp={toggleMarkAsDoneHandler}
+      role="presentation"
+    >
+      <p className="w-full">
         {title}
-
       </p>
       <div>
         <button
           type="button"
           className="remove-task-button"
-          onClick={() => { deleteTaskHandler(); }}
+          onClick={deleteTaskHandler}
         >
           Delete
         </button>
         <button
           type="button"
           className="edit-task-button"
-          onClick={() => { editTaskHandler(); }}
+          onClick={editTaskHandler}
         >
           Edit
         </button>
