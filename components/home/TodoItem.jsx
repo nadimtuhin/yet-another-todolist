@@ -14,9 +14,7 @@ function TodoItem({ id, title, done }) {
     dispatch(deleteTask({ id }));
   };
 
-  const editTaskHandler = (event) => {
-    event.stopPropagation();
-    event.preventDefault();
+  const editTaskHandler = () => {
     dispatch(
       editTask({
         id,
@@ -32,13 +30,21 @@ function TodoItem({ id, title, done }) {
   return (
     <div
       className={classnames('task-item', { done })}
-      onClick={toggleMarkAsDoneHandler}
-      onKeyUp={toggleMarkAsDoneHandler}
-      role="presentation"
     >
+      <label htmlFor={`task-item-${id}`} className="inline-flex items-center p-2">
+        <input
+          id={`task-item-${id}`}
+          onChange={toggleMarkAsDoneHandler}
+          type="checkbox"
+          className="w-6 h-6 rounded-full"
+          checked={done}
+        />
+      </label>
+
       <p className="w-full">
         {title}
       </p>
+
       <div>
         <button
           type="button"
