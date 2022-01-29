@@ -26,6 +26,12 @@ function AddTodo() {
     setValue('');
   };
 
+  const onEnter = (event) => {
+    if (event.key === 'Enter' || event.keyCode === 13) {
+      onSubmit(event);
+    }
+  };
+
   return (
     <>
       <input
@@ -34,6 +40,7 @@ function AddTodo() {
         placeholder="Add task"
         value={value}
         onChange={(event) => setValue(event.target.value)}
+        onKeyUp={onEnter}
       />
 
       <button type="button" className="add-todo-button" onClick={onSubmit}>
