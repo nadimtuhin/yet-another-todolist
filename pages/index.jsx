@@ -5,8 +5,12 @@ export default function Home() {
   return (
     <div className="app-container">
       <div className="app-wrapper">
-        <h1 className="app-title">My Tasks</h1>
-        <AddTodo />
+        <div className="mb-4">
+          <h1 className="app-title">Todo List</h1>
+          <div className="flex mt-4">
+            <AddTodo />
+          </div>
+        </div>
         <TodoList />
       </div>
     </div>
