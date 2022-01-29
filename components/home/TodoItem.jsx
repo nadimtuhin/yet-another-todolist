@@ -15,10 +15,8 @@ function TodoItem({ id, title }) {
   };
 
   return (
-    <li className="task-item">
-      <div>
-        {title}
-      </div>
+    <div className="task-item flex mb-4 items-center">
+      <p className="w-full">{title}</p>
       <div>
         <button
           type="button"
@@ -28,7 +26,7 @@ function TodoItem({ id, title }) {
           Delete
         </button>
       </div>
-    </li>
+    </div>
   );
 }
 
