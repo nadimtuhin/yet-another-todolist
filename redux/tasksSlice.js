@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import produce from 'immer';
 import { nanoid } from 'nanoid';
 
 export const tasksSlice = createSlice({
@@ -18,15 +17,11 @@ export const tasksSlice = createSlice({
     },
     toggleMarkAsDone: (state, action) => {
       const index = state.findIndex((task) => task.id === action.payload.id);
-      return produce(state, (draft) => {
-        draft[index].done = !draft[index].done;
-      });
+      state[index].done = !state[index].done;
     },
     editTask: (state, action) => {
       const index = state.findIndex((task) => task.id === action.payload.id);
-      return produce(state, (draft) => {
-        draft[index].title = action.payload.title;
-      });
+      state[index].title = action.payload.title;
     },
     deleteTask: (state, action) => state.filter((item) => item.id !== action.payload.id),
   },
