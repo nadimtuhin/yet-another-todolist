@@ -1,16 +1,23 @@
 import { configureStore } from '@reduxjs/toolkit';
-import persistState from 'redux-localstorage';
-import { compose } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 
 import taskReducer from './tasksSlice';
 
-const enhancer = compose(
-  persistState(/* paths, config */),
-);
+const persistConfig = {
+  key: 'root',
+  storage,
+};
 
-export default configureStore({
-  reducer: {
-    tasks: taskReducer,
-  },
-  enhancers: [enhancer],
+const reducer = {
+  tasks: taskReducer,
+};
+
+const persistedReducer = persistReducer(persistConfig, reducer);
+
+const store = configureStore({
+  reducer: persistedReducer,
 });
+const persistor = persistStore(store);
+
+export { store, persistor };
