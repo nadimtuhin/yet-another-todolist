@@ -1,4 +1,6 @@
+/* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
+import produce from 'immer';
 
 export const tasksSlice = createSlice({
   name: 'tasks',
@@ -8,14 +10,30 @@ export const tasksSlice = createSlice({
       const newTask = {
         id: new Date(),
         date: new Date(),
-        name: action.payload.task,
+        title: action.payload.task,
+        done: false,
       };
       state.push(newTask);
+    },
+    toggleMarkAsDone: (state, action) => {
+      const index = state.findIndex((task) => task.id === action.payload.id);
+      console.log(index);
+      return produce(state, (draft) => {
+        draft[index].done = !draft[index].done;
+      });
+    },
+    editTask: (state, action) => {
+      const index = state.findIndex((task) => task.id === action.payload.id);
+      return produce(state, (draft) => {
+        draft[index].title = action.payload.title;
+      });
     },
     deleteTask: (state, action) => state.filter((item) => item.id !== action.payload.id),
   },
 });
 
-export const { addTask, deleteTask } = tasksSlice.actions;
+export const {
+  addTask, deleteTask, editTask, toggleMarkAsDone,
+} = tasksSlice.actions;
 
 export default tasksSlice.reducer;

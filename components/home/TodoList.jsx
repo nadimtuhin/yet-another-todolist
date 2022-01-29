@@ -8,7 +8,7 @@ function TodoList() {
   return (
     <ul className="tasks-list">
       {todos.map((todo) => (
-        <TodoItem id={todo.id} title={todo.name} completed={todo.status} />
+        <TodoItem key={todo.id} id={todo.id} title={todo.title} done={todo.done} />
       ))}
     </ul>
   );
