@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.test-title {
-  @apply text-3xl font-bold underline;
+.app-container {
+  @apply w-full flex items-center justify-center font-sans;
+}
+
+.app-wrapper {
+  @apply bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg;
 }
