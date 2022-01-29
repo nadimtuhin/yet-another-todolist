@@ -15,7 +15,7 @@ import {
 import taskReducer from './tasksSlice';
 
 const persistConfig = {
-  key: 'test',
+  key: 'root',
   storage,
 };
 
@@ -32,6 +32,7 @@ const store = configureStore({
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
+  devTools: process.env.NODE_ENV !== 'production',
 });
 
 const persistor = persistStore(store);
