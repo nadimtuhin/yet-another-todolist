@@ -38,6 +38,7 @@ function TodoItem({ id, title, done }) {
           type="checkbox"
           className="w-6 h-6 rounded-full cursor-pointer"
           checked={done}
+          title="mark as done"
         />
       </label>
 
@@ -48,6 +49,7 @@ function TodoItem({ id, title, done }) {
       <div className="task-item-actions absolute right-0 top-0 bg-orange">
         <button
           type="button"
+          title="delete"
           className="remove-task-button p-2"
           onClick={deleteTaskHandler}
         >
@@ -56,6 +58,7 @@ function TodoItem({ id, title, done }) {
         |
         <button
           type="button"
+          title="edit"
           className="edit-task-button p-2"
           onClick={editTaskHandler}
         >
