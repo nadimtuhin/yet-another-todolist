@@ -7,7 +7,7 @@
 }
 
 .app-wrapper {
-  @apply bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg;
+  @apply rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg;
 }
 
 .add-todo-input {
@@ -15,5 +15,5 @@
 }
 
 .add-todo-button {
-  @apply p-2 border-2 rounded hover:text-white;
+  @apply p-2 border-2 rounded;
 }
