@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import produce from 'immer';
+import { nanoid } from 'nanoid';
 
 export const tasksSlice = createSlice({
   name: 'tasks',
@@ -8,7 +9,7 @@ export const tasksSlice = createSlice({
   reducers: {
     addTask: (state, action) => {
       const newTask = {
-        id: new Date(),
+        id: nanoid(),
         date: new Date(),
         title: action.payload.task,
         done: false,
@@ -17,7 +18,6 @@ export const tasksSlice = createSlice({
     },
     toggleMarkAsDone: (state, action) => {
       const index = state.findIndex((task) => task.id === action.payload.id);
-      console.log(index);
       return produce(state, (draft) => {
         draft[index].done = !draft[index].done;
       });
