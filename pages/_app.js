@@ -3,9 +3,13 @@
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import Head from 'next/head';
+import Modal from 'react-modal';
 
 import { store, persistor } from '../redux/store';
 import '../styles/globals.css';
+
+// important: do not remove.
+Modal.setAppElement('#__next');
 
 function MyApp({ Component, pageProps }) {
   return (
