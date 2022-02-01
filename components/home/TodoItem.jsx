@@ -4,8 +4,10 @@ import classnames from 'classnames';
 
 import { deleteTask, editTask, toggleMarkAsDone } from '../../redux/tasksSlice';
 
+function TodoItem({
 // eslint-disable-next-line react/prop-types
-function TodoItem({ id, title, done }) {
+  id, title, done, openDetailsModal,
+}) {
   const dispatch = useDispatch();
 
   const deleteTaskHandler = (event) => {
@@ -42,7 +44,12 @@ function TodoItem({ id, title, done }) {
         />
       </label>
 
-      <p className="w-full cursor-pointer">
+      <p
+        role="presentation"
+        className="w-full cursor-pointer"
+        onClick={openDetailsModal}
+        onKeyPress={openDetailsModal}
+      >
         {title}
       </p>
 
