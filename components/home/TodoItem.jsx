@@ -32,7 +32,7 @@ function TodoItem({
     <div
       className={classnames('task-item relative', { done })}
     >
-      <label htmlFor={`task-item-${id}`} className="inline-flex items-center p-2">
+      <label htmlFor={`task-item-${id}`} className="checkbox p-2">
         <input
           id={`task-item-${id}`}
           onChange={toggleMarkAsDoneHandler}
@@ -45,18 +45,18 @@ function TodoItem({
 
       <p
         role="presentation"
-        className="w-full cursor-pointer"
+        className="cursor-pointer"
         onClick={openDetailsModalHandler}
         onKeyPress={openDetailsModalHandler}
       >
         {title}
       </p>
 
-      <div className="task-item-actions absolute right-0 top-0 bg-orange">
+      <div className="absolute right-0 top-0">
         <button
           type="button"
           title="delete"
-          className="remove-task-button p-2"
+          className="p-2"
           onClick={deleteTaskHandler}
         >
           Delete
@@ -65,7 +65,7 @@ function TodoItem({
         <button
           type="button"
           title="edit"
-          className="edit-task-button p-2"
+          className="p-2"
           onClick={editTaskHandler}
         >
           Edit
