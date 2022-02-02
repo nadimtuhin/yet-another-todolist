@@ -86,7 +86,7 @@ function TodoItemDetails({ modalIsOpen, closeModal, selectedTodoId }) {
             <Media.Item>
               <Content>
                 { !showEditInput ? (
-                  <p>
+                  <p role="presentation" onClick={showEditInputHandler}>
                     {title}
                   </p>
                 ) : (
