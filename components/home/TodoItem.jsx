@@ -37,7 +37,7 @@ function TodoItem({
           id={`task-item-${id}`}
           onChange={toggleMarkAsDoneHandler}
           type="checkbox"
-          className="w-6 h-6 rounded-full cursor-pointer"
+          className="cursor-pointer"
           checked={done}
           title="mark as done"
         />
