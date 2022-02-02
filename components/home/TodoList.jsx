@@ -34,6 +34,7 @@ function TodoList({ todos }) {
         <TodoItem
           key={todo.id}
           id={todo.id}
+          date={todo.date}
           title={todo.title}
           done={todo.done}
           openDetailsModal={openModal}

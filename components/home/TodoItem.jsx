@@ -6,7 +6,7 @@ import { deleteTask, toggleMarkAsDone } from '../../redux/tasksSlice';
 
 function TodoItem({
 // eslint-disable-next-line react/prop-types
-  id, title, done, openDetailsModal,
+  id, title, done, openDetailsModal, date,
 }) {
   const dispatch = useDispatch();
 
@@ -50,6 +50,9 @@ function TodoItem({
         onKeyPress={openDetailsModalHandler}
       >
         {title}
+      </p>
+      <p className="date tag is-three-quarters">
+        {date.toString()}
       </p>
 
       <div className="task-item-actions absolute right-0 top-0">
