@@ -12,7 +12,9 @@ function TodoItemDetails({ modalIsOpen, closeModal, selectedTodoId }) {
   const todo = useSelector(
     (state) => state.tasks.find((item) => (item.id === selectedTodoId)),
   );
-  const { id, title, done } = todo;
+  const {
+    id, title, done, date,
+  } = todo;
 
   const [showEditInput, setShowEditInput] = useState(false);
   const [newTitle, setNewTitle] = useState('');
@@ -86,9 +88,14 @@ function TodoItemDetails({ modalIsOpen, closeModal, selectedTodoId }) {
             <Media.Item>
               <Content>
                 { !showEditInput ? (
-                  <p role="presentation" onClick={showEditInputHandler}>
-                    {title}
-                  </p>
+                  <>
+                    <p role="presentation" onClick={showEditInputHandler}>
+                      {title}
+                    </p>
+                    <p className="date tag">
+                      {date}
+                    </p>
+                  </>
                 ) : (
                   <div>
                     <p>
