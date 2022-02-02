@@ -93,7 +93,7 @@ function TodoItemDetails({ modalIsOpen, closeModal, selectedTodoId }) {
                       {title}
                     </p>
                     <p className="date tag">
-                      {date}
+                      {date.toString()}
                     </p>
                   </>
                 ) : (
