@@ -33,8 +33,8 @@ function AddTodo() {
   };
 
   return (
-    <div className="field has-addons is-full-width">
-      <div className="control">
+    <div className="field has-addons columns">
+      <div className="control column is-four-fifths">
         <input
           className="input"
           type="text"
@@ -44,11 +44,12 @@ function AddTodo() {
           onKeyUp={onEnter}
         />
       </div>
-      <div className="control">
+      <div className="control column">
         <button
           type="submit"
           className="button is-primary"
           onClick={onSubmit}
+          disabled={value.trim().length === 0}
         >
           Save
         </button>

@@ -1,11 +1,10 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import TodoItem from './TodoItem';
 import TodoItemDetails from './TodoItemDetails';
 
-function TodoList() {
-  const todos = useSelector((state) => state.tasks);
+function TodoList({ todos }) {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedTodoId, setSelectedTodoId] = useState(null);
 
