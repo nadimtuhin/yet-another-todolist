@@ -33,20 +33,27 @@ function AddTodo() {
   };
 
   return (
-    <>
-      <input
-        type="text"
-        className="add-todo-input"
-        placeholder="Add task"
-        value={value}
-        onChange={(event) => setValue(event.target.value)}
-        onKeyUp={onEnter}
-      />
-
-      <button type="button" className="add-todo-button" onClick={onSubmit}>
-        Save
-      </button>
-    </>
+    <div className="field has-addons is-full-width">
+      <div className="control">
+        <input
+          className="input"
+          type="text"
+          placeholder="Learn graphs"
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+          onKeyUp={onEnter}
+        />
+      </div>
+      <div className="control">
+        <button
+          type="submit"
+          className="button is-primary"
+          onClick={onSubmit}
+        >
+          Save
+        </button>
+      </div>
+    </div>
   );
 }
 

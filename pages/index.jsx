@@ -9,15 +9,16 @@ export default function Home() {
       <Head>
         <title>Yet another Todo List app</title>
       </Head>
-      <div className="app-container">
-        <div className="app-wrapper">
-          <div className="mb-4">
-            <h1 className="app-title">Todo List</h1>
-            <div className="flex mt-4">
+      <div className="container">
+        <div className="columns">
+          <div className="column is-one-fifth" />
+          <div className="column is-three-fifths">
+            <div className="mb-4 mt-10">
+              <h1 className="title">Todo List</h1>
               <AddTodo />
             </div>
+            <TodoList />
           </div>
-          <TodoList />
         </div>
       </div>
     </>
