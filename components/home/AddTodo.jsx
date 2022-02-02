@@ -47,7 +47,7 @@ function AddTodo() {
       <div className="control column">
         <button
           type="submit"
-          className="button is-primary"
+          className="button is-info"
           onClick={onSubmit}
           disabled={value.trim().length === 0}
         >

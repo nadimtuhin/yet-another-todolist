@@ -28,10 +28,10 @@ function TodoItem({
     openDetailsModal(id);
   };
 
+  const cx = classnames('task-item border-2 p-2 mb-4 rounded relative is-flex is-align-content-center ', { done });
+
   return (
-    <div
-      className={classnames('task-item relative', { done })}
-    >
+    <div className={cx}>
       <label htmlFor={`task-item-${id}`} className="checkbox p-2">
         <input
           id={`task-item-${id}`}
@@ -52,20 +52,19 @@ function TodoItem({
         {title}
       </p>
 
-      <div className="absolute right-0 top-0">
+      <div className="task-item-actions absolute right-0 top-0">
         <button
           type="button"
           title="delete"
-          className="p-2"
+          className="button is-danger"
           onClick={deleteTaskHandler}
         >
           Delete
         </button>
-        |
         <button
           type="button"
           title="edit"
-          className="p-2"
+          className="button is-success"
           onClick={editTaskHandler}
         >
           Edit

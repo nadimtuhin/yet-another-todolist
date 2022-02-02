@@ -3,17 +3,30 @@
 @tailwind utilities;
 
 .task-item.done {
-  @apply text-green border-green line-through;
-}
-
-.task-item {
-  @apply p-2 border-2 rounded flex mb-4 items-center;
+  --tw-border-opacity: 1;
+  border-color: rgb(19 206 102 / var(--tw-border-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(19 206 102 / var(--tw-text-opacity));
+  -webkit-text-decoration-line: line-through;
+  text-decoration-line: line-through;
 }
 
 .task-item .task-item-actions {
+  background: #ddd;
   display: none;
 }
 
 .task-item:hover .task-item-actions {
   display: block;
+}
+
+
+.border-2 {
+    border-width: 2px;
+}
+.rounded {
+    border-radius: 0.25rem;
+}
+relative {
+    position: relative;
 }
