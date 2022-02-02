@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
+    "bulma": "0.9.3",
     "classnames": "^2.3.1",
     "nanoid": "^3.2.0",
     "next": "12.0.9",
     "react": "17.0.2",
+    "react-bulma-components": "4.0.7",
     "react-dom": "17.0.2",
     "react-modal": "^3.14.4",
     "react-redux": "^7.2.6",

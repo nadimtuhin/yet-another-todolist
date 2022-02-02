@@ -1,43 +1,89 @@
 /* eslint-disable no-return-assign */
 /* eslint-disable react/prop-types */
-import Modal from 'react-modal';
+import {
+  Modal, Media, Content, Button,
+} from 'react-bulma-components';
+import { useSelector, useDispatch } from 'react-redux';
 
-const customStyles = {
-  overlay: {
-    backgroundColor: 'rgb(90 90 90 / 90%)',
-  },
-  content: {
-    borderRadius: '10px',
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    height: '90%',
-    width: '90%',
-    maxWidth: '650px',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
+import { deleteTask, editTask, toggleMarkAsDone } from '../../redux/tasksSlice';
 
-function TodoItemDetails({ modalIsOpen, closeModal }) {
-  let subtitle;
+function TodoItemDetails({ modalIsOpen, closeModal, selectedTodoId }) {
+  const todo = useSelector(
+    (state) => state.tasks.find((item) => (item.id === selectedTodoId)),
+  );
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
-  }
+  const { id, title, done } = todo;
+
+  const dispatch = useDispatch();
+
+  const deleteTaskHandler = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    closeModal();
+    dispatch(deleteTask({ id }));
+  };
+
+  const editTaskHandler = () => {
+    dispatch(
+      editTask({
+        id,
+        title: `testing edit ${new Date()}`,
+      }),
+    );
+  };
+
+  const toggleMarkAsDoneHandler = () => {
+    dispatch(toggleMarkAsDone({ id }));
+  };
 
   return (
     <Modal
-      isOpen={modalIsOpen}
-      onAfterOpen={afterOpenModal}
-      onRequestClose={closeModal}
-      style={customStyles}
-      contentLabel="Todo Item Details"
+      show={modalIsOpen}
+      onClose={closeModal}
     >
-      <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-      <button type="button" onClick={closeModal}>close</button>
+      <Modal.Card>
+        <Modal.Card.Header>
+          <Modal.Card.Title>
+            Task
+          </Modal.Card.Title>
+        </Modal.Card.Header>
+        <Modal.Card.Body>
+          <Media>
+            <Media.Item
+              align="left"
+              renderAs="figure"
+            >
+              <label htmlFor={`task-item-${id}`} className="inline-flex items-center p-2">
+                <input
+                  id={`task-item-${id}`}
+                  onChange={toggleMarkAsDoneHandler}
+                  type="checkbox"
+                  className="w-6 h-6 rounded-full cursor-pointer"
+                  checked={done}
+                  title="mark as done"
+                />
+              </label>
+            </Media.Item>
+            <Media.Item>
+              <Content>
+                <p>
+                  {title}
+                </p>
+              </Content>
+            </Media.Item>
+          </Media>
+        </Modal.Card.Body>
+        <Modal.Card.Footer
+          align="right"
+        >
+          <Button color="success" onClick={closeModal}>
+            Close
+          </Button>
+          <Button onClick={deleteTaskHandler}>
+            Delete
+          </Button>
+        </Modal.Card.Footer>
+      </Modal.Card>
     </Modal>
   );
 }

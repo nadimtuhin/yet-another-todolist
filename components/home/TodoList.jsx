@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import TodoItem from './TodoItem';
@@ -6,23 +6,30 @@ import TodoItemDetails from './TodoItemDetails';
 
 function TodoList() {
   const todos = useSelector((state) => state.tasks);
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [selectedTodoId, setSelectedTodoId] = useState(null);
 
-  function openModal() {
+  function openModal(todoId) {
     setIsOpen(true);
+    setSelectedTodoId(todoId);
   }
 
   function closeModal() {
     setIsOpen(false);
+    setSelectedTodoId(null);
   }
 
   return (
     <div className="tasks-list">
-      <TodoItemDetails
-        modalIsOpen={modalIsOpen}
-        closeModal={closeModal}
-        contentLabel="Example Modal"
-      />
+      {
+        selectedTodoId && (
+          <TodoItemDetails
+            modalIsOpen={modalIsOpen}
+            closeModal={closeModal}
+            selectedTodoId={selectedTodoId}
+          />
+        )
+      }
 
       { todos.map((todo) => (
         <TodoItem

@@ -29,6 +29,10 @@ function TodoItem({
     dispatch(toggleMarkAsDone({ id }));
   };
 
+  const openDetailsModalHandler = () => {
+    openDetailsModal(id);
+  };
+
   return (
     <div
       className={classnames('task-item relative', { done })}
@@ -47,8 +51,8 @@ function TodoItem({
       <p
         role="presentation"
         className="w-full cursor-pointer"
-        onClick={openDetailsModal}
-        onKeyPress={openDetailsModal}
+        onClick={openDetailsModalHandler}
+        onKeyPress={openDetailsModalHandler}
       >
         {title}
       </p>

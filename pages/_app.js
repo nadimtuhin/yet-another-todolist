@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import Head from 'next/head';
 import Modal from 'react-modal';
+import 'bulma/css/bulma.min.css';
 
 import { store, persistor } from '../redux/store';
 import '../styles/globals.css';
