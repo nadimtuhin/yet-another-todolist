@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import classnames from 'classnames';
 
-import { deleteTask, editTask, toggleMarkAsDone } from '../../redux/tasksSlice';
+import { deleteTask, toggleMarkAsDone } from '../../redux/tasksSlice';
 
 function TodoItem({
 // eslint-disable-next-line react/prop-types
@@ -17,12 +17,7 @@ function TodoItem({
   };
 
   const editTaskHandler = () => {
-    dispatch(
-      editTask({
-        id,
-        title: `testing edit ${new Date()}`,
-      }),
-    );
+    openDetailsModal(id);
   };
 
   const toggleMarkAsDoneHandler = () => {
