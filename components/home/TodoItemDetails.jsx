@@ -102,9 +102,8 @@ function TodoItemDetails({ modalIsOpen, closeModal, selectedTodoId }) {
                       <textarea
                         className="textarea"
                         onChange={(event) => setNewTitle(event.target.value)}
-                      >
-                        {title}
-                      </textarea>
+                        value={newTitle}
+                      />
                     </p>
 
                     <p className="buttons">
