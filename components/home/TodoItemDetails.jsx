@@ -4,6 +4,7 @@ import {
   Modal, Media, Content, Button,
 } from 'react-bulma-components';
 import { useSelector, useDispatch } from 'react-redux';
+import { useState } from 'react';
 
 import { deleteTask, editTask, toggleMarkAsDone } from '../../redux/tasksSlice';
 
@@ -11,10 +12,21 @@ function TodoItemDetails({ modalIsOpen, closeModal, selectedTodoId }) {
   const todo = useSelector(
     (state) => state.tasks.find((item) => (item.id === selectedTodoId)),
   );
-
   const { id, title, done } = todo;
 
+  const [showEditInput, setShowEditInput] = useState(false);
+  const [newTitle, setNewTitle] = useState('');
   const dispatch = useDispatch();
+
+  const showEditInputHandler = () => {
+    setNewTitle(title);
+    setShowEditInput(true);
+  };
+
+  const hideEditInputHandler = () => {
+    setNewTitle('');
+    setShowEditInput(false);
+  };
 
   const deleteTaskHandler = (event) => {
     event.stopPropagation();
@@ -27,19 +39,26 @@ function TodoItemDetails({ modalIsOpen, closeModal, selectedTodoId }) {
     dispatch(
       editTask({
         id,
-        title: `testing edit ${new Date()}`,
+        title: newTitle,
       }),
     );
+
+    hideEditInputHandler();
   };
 
   const toggleMarkAsDoneHandler = () => {
     dispatch(toggleMarkAsDone({ id }));
   };
 
+  const closeModalHandler = () => {
+    setShowEditInput(false);
+    closeModal();
+  };
+
   return (
     <Modal
       show={modalIsOpen}
-      onClose={closeModal}
+      onClose={closeModalHandler}
     >
       <Modal.Card>
         <Modal.Card.Header>
@@ -66,9 +85,32 @@ function TodoItemDetails({ modalIsOpen, closeModal, selectedTodoId }) {
             </Media.Item>
             <Media.Item>
               <Content>
-                <p>
-                  {title}
-                </p>
+                { !showEditInput ? (
+                  <p>
+                    {title}
+                  </p>
+                ) : (
+                  <div>
+                    <p>
+                      <textarea
+                        className="textarea"
+                        onChange={(event) => setNewTitle(event.target.value)}
+                      >
+                        {title}
+                      </textarea>
+                    </p>
+
+                    <p className="buttons">
+                      <Button className="is-success" onClick={editTaskHandler}>
+                        Update
+                      </Button>
+                      <Button className="is-danger" onClick={hideEditInputHandler}>
+                        Cancel
+                      </Button>
+                    </p>
+                  </div>
+                )}
+
               </Content>
             </Media.Item>
           </Media>
@@ -76,11 +118,14 @@ function TodoItemDetails({ modalIsOpen, closeModal, selectedTodoId }) {
         <Modal.Card.Footer
           align="right"
         >
-          <Button color="success" onClick={closeModal}>
-            Close
+          <Button className="is-primary" onClick={showEditInputHandler}>
+            Edit
           </Button>
-          <Button onClick={deleteTaskHandler}>
+          <Button className="is-danger" onClick={deleteTaskHandler}>
             Delete
+          </Button>
+          <Button className="" onClick={closeModalHandler}>
+            Close
           </Button>
         </Modal.Card.Footer>
       </Modal.Card>
