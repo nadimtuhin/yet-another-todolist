@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+        continue-on-error: true
+
+      - name: Install dependencies
+        run: |
+          if [ -f "package-lock.json" ]; then
+            npm ci
+          elif [ -f "package.json" ]; then
+            npm install
+          else
+            echo "No package.json found, skipping install"
+          fi
+
+      - name: Lint
+        run: |
+          if [ -f "package.json" ] && node -e "require('./package.json').scripts.lint" 2>/dev/null; then
+            npm run lint
+          else
+            echo "No lint script, skipping"
+          fi
+
+      - name: Test
+        run: |
+          if [ -f "package.json" ] && node -e "require('./package.json').scripts.test" 2>/dev/null; then
+            npm test
+          else
+            echo "No test script, skipping"
+          fi
